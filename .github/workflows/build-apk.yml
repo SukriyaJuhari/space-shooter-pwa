@@ -23,6 +23,9 @@ jobs:
           distribution: temurin
           java-version: 17
 
+      - name: Install Bubblewrap
+        run: npm install -g @bubblewrap/cli
+
       - name: Build APK
         run: bash build-apk.sh
 
