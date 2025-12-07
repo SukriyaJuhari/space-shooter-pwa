@@ -1,0 +1,39 @@
+name: Build APK
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 22
+
+    - name: Set up Java 17
+      uses: actions/setup-java@v3
+      with:
+        distribution: temurin
+        java-version: 17
+
+    - name: Install Bubblewrap
+      run: npm install -g @bubblewrap/cli
+
+    - name: Build APK
+      run: |
+        bubblewrap init --manifest=manifest.json --no-install
+        bubblewrap build
+
+    - name: Upload APK Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: space-shooter-apk
+        path: ./build/*.apk
+
