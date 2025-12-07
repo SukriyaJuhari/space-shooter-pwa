@@ -1,8 +1,8 @@
 #!/bin/bash
-# Set path JDK agar Bubblewrap tidak tanya JDK
-export BUBBLEWRAP_JDK_PATH=/usr/lib/jvm/java-17-temurin
+# Gunakan path JDK GitHub Actions
+export BUBBLEWRAP_JDK_PATH=/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.17-10/x64
 
-# Init dan build tanpa prompt
+# Build non-interaktif
 bubblewrap init --manifest=manifest.json --no-install --force
 bubblewrap build
 
