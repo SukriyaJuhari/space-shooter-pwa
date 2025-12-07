@@ -27,11 +27,7 @@ jobs:
         run: npm install -g @bubblewrap/cli
 
       - name: Build APK
-        env:
-          BUBBLEWRAP_JDK_PATH: /usr/lib/jvm/java-17-temurin
-        run: |
-          bubblewrap init --manifest=manifest.json --no-install --force
-          bubblewrap build
+        run: bash build-apk.sh
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
